@@ -10,6 +10,7 @@ from core.yasg import urlpatterns_yasg
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include(urlpatterns_yasg)),
+    path("notifications/", include("apps.notifications.urls")),
 ]
 
 

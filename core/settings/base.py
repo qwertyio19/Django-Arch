@@ -30,6 +30,7 @@ THEME_APPS = [
 ]
 
 MY_APPS = [
+    'apps.notifications',
 ]
 
 DJANGO_APPS = [
@@ -44,6 +45,8 @@ DJANGO_APPS = [
 LIBRARY_APPS = [
     'rest_framework',
     'drf_yasg',
+    'ckeditor',
+    'modeltranslation',
 ]
 
 INSTALLED_APPS = [
@@ -129,3 +132,6 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static/'
+
+
+MODELTRANSLATION_FALLBACK_LANGUAGES = ()
