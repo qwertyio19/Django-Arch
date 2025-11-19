@@ -15,7 +15,7 @@ urlpatterns = [
 
 # Маршруты, зависящие от языка (i18n)
 urlpatterns += i18n_patterns(
-
+    path('api/v1/base/', include('apps.base.urls')),
 )
 
 

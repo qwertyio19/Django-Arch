@@ -30,6 +30,14 @@ THEME_APPS = [
 ]
 
 MY_APPS = [
+    'apps.administration',
+    'apps.base',
+    'apps.district',
+    'apps.news',
+    'apps.kenesh',
+    'apps.notifications',
+
+
 ]
 
 DJANGO_APPS = [
@@ -44,13 +52,15 @@ DJANGO_APPS = [
 LIBRARY_APPS = [
     'rest_framework',
     'drf_yasg',
+    'ckeditor',
+    'modeltranslation',
 ]
 
 INSTALLED_APPS = [
     *THEME_APPS,
     *DJANGO_APPS,
-    *MY_APPS,
     *LIBRARY_APPS,
+    *MY_APPS,
 ]
 
 MIDDLEWARE = [
