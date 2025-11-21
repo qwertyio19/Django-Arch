@@ -30,7 +30,7 @@ THEME_APPS = [
 ]
 
 MY_APPS = [
-    'apps.notifications',
+    'apps.kenesh',
 ]
 
 DJANGO_APPS = [
@@ -47,6 +47,7 @@ LIBRARY_APPS = [
     'drf_yasg',
     'ckeditor',
     'modeltranslation',
+    "corsheaders",
 ]
 
 INSTALLED_APPS = [
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -135,3 +137,22 @@ STATIC_ROOT = BASE_DIR / 'static/'
 
 
 MODELTRANSLATION_FALLBACK_LANGUAGES = ()
+
+
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "192.168.1.6",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://192.168.1.6:5000",
+    "http://localhost:5000",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://192.168.1.6:5000",
+    "http://localhost:5000",
+]
+
+CORS_ALLOW_CREDENTIALS = True

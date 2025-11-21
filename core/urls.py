@@ -9,14 +9,13 @@ from core.yasg import urlpatterns_yasg
 # Основные маршруты (не зависят от мультиязычности)
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include(urlpatterns_yasg)),
-    path("notifications/", include("apps.notifications.urls")),
+    path('', include(urlpatterns_yasg)),
 ]
 
 
 # Маршруты, зависящие от языка (i18n)
 urlpatterns += i18n_patterns(
-
+    path('api/v1/kenesh/', include('apps.kenesh.urls')),
 )
 
 
