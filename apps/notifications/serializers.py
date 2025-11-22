@@ -8,7 +8,6 @@ class AnnouncementSerializer(serializers.ModelSerializer):
 
 class TitleSerializer(serializers.ModelSerializer):
     announcements = AnnouncementSerializer(many=True, read_only=True)
-
     class Meta:
         model = Title
         fields = ['id', 'name', 'announcements']
