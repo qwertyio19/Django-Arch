@@ -10,8 +10,8 @@ class CartModel(models.Model):
         return self.title
     
     class Meta:
-        verbose_name = "Башкы бет"
-        verbose_name_plural = "Башкы беттер"
+        verbose_name = "Башчынын сөзү"
+        verbose_name_plural = "Башчынын сөздөрү"
     
 
 class HeadlinesModel(models.Model):
