@@ -1,9 +1,10 @@
 from django.urls import path
-from apps.notifications.views import AnnouncementListMixinView, TitleListMixinView, AnnouncementByTitleMixinView
+from apps.notifications.views import AnnouncementViewSet, TitleViewSet
 
 urlpatterns = [
-    path('titles/', TitleListMixinView.as_view(), name='titles-list'),
-    path('announcements/', AnnouncementListMixinView.as_view(), name='announcements-list'),
-    path('titles/<int:title_id>/announcements/', AnnouncementByTitleMixinView.as_view(), name='announcements-by-title'),
+    path('titles/', TitleViewSet.as_view({'get': 'list'}), name='titles-list'),
+    path('titles/<int:pk>/', TitleViewSet.as_view({'get': 'retrieve'}), name='title-detail'),
+    path('announcements/', AnnouncementViewSet.as_view({'get': 'list'}), name='announcements-list'),
+    path('announcements/<int:pk>/', AnnouncementViewSet.as_view({'get': 'retrieve'}), name='announcement-detail'),
 
 ]
