@@ -1,19 +1,24 @@
-from django.utils.translation import gettext_lazy as _  
-from rest_framework import mixins
-from rest_framework.viewsets import GenericViewSet
-from apps.notifications.models import Announcement, Title
-from apps.notifications.serializers import AnnouncementSerializer, TitleSerializer
+from rest_framework import mixins, viewsets
+from .models import Title, Description
+from .serializers import TitleSerializer, DescriptionSerializer
 
-class AnnouncementViewSet(GenericViewSet,
-                         mixins.ListModelMixin,
-                         mixins.RetrieveModelMixin,
-                         ):
-    queryset = Announcement.objects.all()
-    serializer_class = AnnouncementSerializer
 
-class TitleViewSet(GenericViewSet,
-                    mixins.ListModelMixin,
-                    mixins.RetrieveModelMixin,
-                    ):
+class TitleViewSet(mixins.ListModelMixin,
+                            mixins.RetrieveModelMixin,
+                            viewsets.GenericViewSet):
     queryset = Title.objects.all()
     serializer_class = TitleSerializer
+
+
+class DescriptionViewSet(mixins.ListModelMixin,
+                             mixins.RetrieveModelMixin,
+                             viewsets.GenericViewSet):
+    queryset = Description.objects.all()
+    serializer_class = DescriptionSerializer
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        section_id = self.request.query_params.get("section")
+        if section_id:
+            qs = qs.filter(section_id=section_id)
+        return qs

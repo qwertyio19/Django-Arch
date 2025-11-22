@@ -1,11 +1,10 @@
-from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from apps.notifications.views import AnnouncementViewSet, TitleViewSet
+from apps.notifications.views import TitleViewSet, DescriptionViewSet
+
 
 router = DefaultRouter()
-router.register(r'announcements', AnnouncementViewSet, basename='announcement')
-router.register(r'titles', TitleViewSet, basename='title')
+router.register(r"titles", TitleViewSet, basename="title")
+router.register(r"descriptions", DescriptionViewSet, basename="description")
 
-urlpatterns = [
-    path('notifications/', include(router.urls)),
-]
+
+urlpatterns = router.urls

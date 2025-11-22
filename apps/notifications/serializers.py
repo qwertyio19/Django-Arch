@@ -1,13 +1,22 @@
 from rest_framework import serializers
-from apps.notifications.models import Title, Announcement
+from .models import Title, Description
 
-class AnnouncementSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Announcement
-        fields = ['id', 'image', 'description', 'link']
 
 class TitleSerializer(serializers.ModelSerializer):
-    announcements = AnnouncementSerializer(many=True, read_only=True)
     class Meta:
         model = Title
-        fields = ['id', 'name', 'announcements']
+        fields = ["id", "title"]
+
+
+class DescriptionSerializer(serializers.ModelSerializer):
+    section = TitleSerializer(read_only=True)
+
+    class Meta:
+        model = Description
+        fields = [
+            "id",
+            "section",
+            "title",
+            "description",
+            "content_html",
+        ]
