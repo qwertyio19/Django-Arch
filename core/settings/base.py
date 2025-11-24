@@ -31,6 +31,7 @@ THEME_APPS = [
 
 MY_APPS = [
     'apps.kenesh',
+    'apps.notifications',
 ]
 
 DJANGO_APPS = [

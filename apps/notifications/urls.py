@@ -1,9 +1,10 @@
-from django.urls import path
-from apps.notifications.views import AnnouncementListMixinView, TitleListMixinView, AnnouncementByTitleMixinView
+from rest_framework.routers import DefaultRouter
+from apps.notifications.views import TitleViewSet, DescriptionViewSet
 
-urlpatterns = [
-    path('titles/', TitleListMixinView.as_view(), name='titles-list'),
-    path('announcements/', AnnouncementListMixinView.as_view(), name='announcements-list'),
-    path('titles/<int:title_id>/announcements/', AnnouncementByTitleMixinView.as_view(), name='announcements-by-title'),
 
-]
+router = DefaultRouter()
+router.register(r"titles", TitleViewSet, basename="title")
+router.register(r"descriptions", DescriptionViewSet, basename="description")
+
+
+urlpatterns = router.urls

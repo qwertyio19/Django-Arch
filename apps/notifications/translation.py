@@ -1,15 +1,12 @@
-from apps.notifications.admin import *
-from apps.notifications.models import *
-from modeltranslation.translator import translator, TranslationOptions
-
-class TitleTranslationOptions(TranslationOptions):
-    fields = ('name',)
-
-class AnnouncementTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'link')
+from modeltranslation.translator import register, TranslationOptions
+from .models import Title, Description
 
 
+@register(Title)
+class TitleTranslation(TranslationOptions):
+    fields = ("title",)
 
-# Регистрация переводов
-translator.register(Title, TitleTranslationOptions)
-translator.register(Announcement, AnnouncementTranslationOptions)
+
+@register(Description)
+class DescriptionTranslation(TranslationOptions):
+    fields = ("title", "description")

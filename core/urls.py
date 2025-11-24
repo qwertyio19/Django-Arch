@@ -16,6 +16,7 @@ urlpatterns = [
 # Маршруты, зависящие от языка (i18n)
 urlpatterns += i18n_patterns(
     path('api/v1/kenesh/', include('apps.kenesh.urls')),
+    path('api/v1/notif/', include('apps.notifications.urls')),
 )
 
 

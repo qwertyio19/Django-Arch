@@ -1,24 +1,44 @@
 from django.db import models
 
 class Title(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Название"
-        verbose_name_plural = "Названия"
-
-class Announcement(models.Model):
-    title = models.ForeignKey(Title, related_name='объявления', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='объявления/')
-    description = models.TextField()
-    link = models.URLField(blank=True, null=True, verbose_name="Ссылка")
-
-    def __str__(self):
-        return f"{self.title.name} - {self.id}"
+    title = models.CharField(
+        max_length=255,
+        verbose_name="Бөлүм аталышы"
+    )
 
     class Meta:
-        verbose_name = "Объявление"
-        verbose_name_plural = "Объявления"
+        verbose_name = "Айылдык кеңеш жарыя"
+        verbose_name_plural = "Айылдык кеңеш жарыялар"
+        ordering = ["id"]
+
+    def __str__(self):
+        return self.title
+
+
+class Description(models.Model):
+    section = models.ForeignKey(
+        Title,
+        on_delete=models.CASCADE,
+        related_name="documents",
+        verbose_name="Айылдык кеңеш жарыя"
+    )
+    title = models.CharField(
+        max_length=255,
+        verbose_name="Айылдык кеңеш жарыясынын аталышы"
+    )
+    description = models.TextField(
+        verbose_name="Айылдык кеңеш жарыясынын сүрөттөлүшү",
+        blank=True
+    )
+    image = models.ImageField(
+        upload_to="notifications/",
+        verbose_name="Айылдык кеңеш жарыясынын cүрөтү"
+    )
+
+    class Meta:
+        verbose_name = "Айылдык кеңеш жарыясынын маалыматы"
+        verbose_name_plural = "Айылдык кеңеш жарыясынын маалыматтары"
+        ordering = ["id"]
+
+    def __str__(self):
+        return self.title
