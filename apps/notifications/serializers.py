@@ -18,5 +18,5 @@ class DescriptionSerializer(serializers.ModelSerializer):
             "section",
             "title",
             "description",
-            "content_html",
+            "image",
         ]

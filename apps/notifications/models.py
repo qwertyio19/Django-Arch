@@ -3,12 +3,12 @@ from django.db import models
 class Title(models.Model):
     title = models.CharField(
         max_length=255,
-        verbose_name="Бөлүм аталышы"
+        verbose_name="Заголовок блока"
     )
 
     class Meta:
-        verbose_name = "Айылдык кеңеш жарыя"
-        verbose_name_plural = "Айылдык кеңеш жарыялар"
+        verbose_name = "Блок оповещений"
+        verbose_name_plural = "Блоки оповещений"
         ordering = ["id"]
 
     def __str__(self):
@@ -19,29 +19,26 @@ class Description(models.Model):
     section = models.ForeignKey(
         Title,
         on_delete=models.CASCADE,
-        related_name="documents",
-        verbose_name="Айылдык кеңеш жарыя"
+        related_name="description",
+        verbose_name="Блок оповещений"
     )
     title = models.CharField(
         max_length=255,
-        verbose_name="Айылдык кеңеш жарыясынын аталышы"
+        verbose_name="Заголовок"
     )
     description = models.TextField(
-        verbose_name="Айылдык кеңеш жарыясынын сүрөттөлүшү",
+        verbose_name="Описание",
         blank=True
     )
-    file = models.FileField(
+    image = models.ImageField(
         upload_to="notifications/",
-        verbose_name="Айылдык кеңеш жарыясынын файлы (DOCX/PDF)"
-    )
-    content_html = models.TextField(
-        verbose_name="Айылдык кеңеш жарыясынын HTML түрү",
+        verbose_name="Изображение",
         blank=True
     )
 
     class Meta:
-        verbose_name = "Айылдык кеңеш жарыясынын маалыматы"
-        verbose_name_plural = "Айылдык кеңеш жарыясынын маалыматтары"
+        verbose_name = "Оповещение"
+        verbose_name_plural = "Оповещения"
         ordering = ["id"]
 
     def __str__(self):

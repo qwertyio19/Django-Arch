@@ -28,7 +28,7 @@ class DescriptionAdmin(TranslationAdmin):
             'fields': ['title_ky', 'description_ky'],
         }),
         ('Файл', {
-            'fields': ['section', 'file'],
+            'fields': ['section', 'image',],
         }),
     )
 
