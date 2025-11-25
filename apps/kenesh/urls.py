@@ -1,4 +1,3 @@
-# app/api/urls.py  (или твой общий urls для DRF)
 from rest_framework.routers import DefaultRouter
 from apps.kenesh.views import CouncilSectionViewSet, CouncilDocumentViewSet
 

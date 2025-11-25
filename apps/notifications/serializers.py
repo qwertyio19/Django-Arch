@@ -1,21 +1,21 @@
 from rest_framework import serializers
-from .models import Title, Description
+from .models import TypeNotification, Notification
 
 
-class TitleSerializer(serializers.ModelSerializer):
+class TypeNotificationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Title
-        fields = ["id", "title"]
+        model = TypeNotification
+        fields = ["id", "type"]
 
 
-class DescriptionSerializer(serializers.ModelSerializer):
-    section = TitleSerializer(read_only=True)
+class NotificationSerializer(serializers.ModelSerializer):
+    types = TypeNotificationSerializer(read_only=True)
 
     class Meta:
-        model = Description
+        model = Notification
         fields = [
             "id",
-            "section",
+            "types",
             "title",
             "description",
             "image",

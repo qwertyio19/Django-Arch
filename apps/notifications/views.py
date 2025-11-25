@@ -1,17 +1,17 @@
 from rest_framework import mixins, viewsets
-from .models import Title, Description
-from .serializers import TitleSerializer, DescriptionSerializer
+from .models import TypeNotification, Notification
+from .serializers import TypeNotificationSerializer, NotificationSerializer
 
 
-class TitleViewSet(mixins.ListModelMixin,
+class TypeNotificationView(mixins.ListModelMixin,
                             mixins.RetrieveModelMixin,
                             viewsets.GenericViewSet):
-    queryset = Title.objects.all()
-    serializer_class = TitleSerializer
+    queryset = TypeNotification.objects.all()
+    serializer_class = TypeNotificationSerializer
 
 
-class DescriptionViewSet(mixins.ListModelMixin,
-                             mixins.RetrieveModelMixin,
-                             viewsets.GenericViewSet):
-    queryset = Description.objects.all()
-    serializer_class = DescriptionSerializer
+class NotificationView(mixins.ListModelMixin,
+                            mixins.RetrieveModelMixin,
+                            viewsets.GenericViewSet):
+    queryset = Notification.objects.all()
+    serializer_class = NotificationSerializer

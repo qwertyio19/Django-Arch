@@ -1,43 +1,44 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
-class Title(models.Model):
-    title = models.CharField(
+class TypeNotification(models.Model):
+    type = models.CharField(
         max_length=255,
-        verbose_name="Бөлүм аталышы"
+        verbose_name="Түрүнүн аталышы"
     )
 
     class Meta:
-        verbose_name = "Айылдык кеңеш жарыя"
-        verbose_name_plural = "Айылдык кеңеш жарыялар"
-        ordering = ["id"]
+        verbose_name = "Жарнаманын түрү"
+        verbose_name_plural = "Жарнамалардын түрү"
 
     def __str__(self):
-        return self.title
+        return self.type
 
 
-class Description(models.Model):
-    section = models.ForeignKey(
-        Title,
-        on_delete=models.CASCADE,
-        related_name="documents",
-        verbose_name="Айылдык кеңеш жарыя"
+class Notification(models.Model):
+    types = models.ForeignKey(
+        TypeNotification,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="notification",
+        verbose_name="Жарнаманын түрү"
     )
     title = models.CharField(
         max_length=255,
-        verbose_name="Айылдык кеңеш жарыясынын аталышы"
+        verbose_name="Аталышы"
     )
-    description = models.TextField(
-        verbose_name="Айылдык кеңеш жарыясынын сүрөттөлүшү",
+    description = RichTextField(
+        verbose_name="Сүрөттөмө",
         blank=True
     )
     image = models.ImageField(
         upload_to="notifications/",
-        verbose_name="Айылдык кеңеш жарыясынын cүрөтү"
+        verbose_name="Жарнаманын cүрөтү"
     )
 
     class Meta:
-        verbose_name = "Айылдык кеңеш жарыясынын маалыматы"
-        verbose_name_plural = "Айылдык кеңеш жарыясынын маалыматтары"
+        verbose_name = "Жарнама"
+        verbose_name_plural = "Жарнамалар"
         ordering = ["id"]
 
     def __str__(self):

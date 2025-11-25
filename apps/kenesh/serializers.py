@@ -1,4 +1,3 @@
-# app/council/serializers.py
 from rest_framework import serializers
 from .models import CouncilSection, CouncilDocument
 
@@ -6,7 +5,7 @@ from .models import CouncilSection, CouncilDocument
 class CouncilSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = CouncilSection
-        fields = ["id", "title", "detail_title"]  # modeltranslation подставит активный язык
+        fields = ["id", "title", "detail_title"]
 
 
 class CouncilDocumentSerializer(serializers.ModelSerializer):
@@ -14,7 +13,6 @@ class CouncilDocumentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CouncilDocument
-        # file тут НЕ отдаем — только текст для сайта
         fields = [
             "id",
             "section",

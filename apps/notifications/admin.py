@@ -1,25 +1,24 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 from .translation import *
-from .models import Title, Description
+from .models import TypeNotification, Notification
 
 
-
-class TitleAdmin(TranslationAdmin):
+class TypeNotificationAdmin(TranslationAdmin):
     fieldsets = (
         ('Русская версия', {
-            'fields': ['title_ru'],
+            'fields': ['type_ru'],
         }),
         ('Кыргызская версия', {
-            'fields': ['title_ky'],
+            'fields': ['type_ky'],
         }),
     )
 
-    list_display = ['title_ru', 'title_ky']
-    search_fields = ['title_ru', 'title_ky']  
+    list_display = ['type_ru', 'type_ky']
+    search_fields = ['type_ru', 'type_ky']  
 
 
-class DescriptionAdmin(TranslationAdmin):
+class NotificationAdmin(TranslationAdmin):
     fieldsets = (
         ('Русская версия', {
             'fields': ['title_ru', 'description_ru'],
@@ -28,21 +27,21 @@ class DescriptionAdmin(TranslationAdmin):
             'fields': ['title_ky', 'description_ky'],
         }),
         ('Файл', {
-            'fields': ['section', 'image'],
+            'fields': ['types', 'image'],
         }),
     )
 
 
-    list_display = ['title_ru', 'title_ky', 'section']
-    list_filter = ['section'] 
+    list_display = ['title_ru', 'title_ky', 'types']
+    list_filter = ['types'] 
     search_fields = [
         'title_ru',
         'title_ky',
         'description_ru',
         'description_ky',
-        'section__title_ru', 
-        'section__title_ky', 
+        'types__title_ru', 
+        'types__title_ky', 
     ]
 
-admin.site.register(Title, TitleAdmin)
-admin.site.register(Description, DescriptionAdmin)
+admin.site.register(TypeNotification, TypeNotificationAdmin)
+admin.site.register(Notification, NotificationAdmin)

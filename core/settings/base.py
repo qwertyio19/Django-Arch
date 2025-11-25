@@ -121,7 +121,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LANGUAGES = [
     ('ru', _('Russian')),
     ('ky', _('Kyrgyz')),
-    ('en', _('English')),
 ]
 
 REST_FRAMEWORK = {

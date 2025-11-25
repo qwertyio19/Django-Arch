@@ -1,4 +1,3 @@
-# app/council/utils.py
 import os
 import mammoth
 import pdfplumber
@@ -39,9 +38,7 @@ def file_to_html(file_field) -> str:
         elif ext == ".pdf":
             return pdf_to_html(path)
         else:
-            # запасной вариант: жөнөкөй текст файл
             with open(path, "r", encoding="utf-8", errors="ignore") as f:
                 return f"<pre>{escape(f.read())}</pre>"
     except Exception:
-        # Конвертация бузулса – сайтың кулап калбасын
         return ""

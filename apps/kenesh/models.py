@@ -1,10 +1,8 @@
-# app/council/models.py
 from django.db import models
 from .utils import file_to_html
 
 
 class CouncilSection(models.Model):
-    # Категория / раздел "Сельского кенеша"
     title = models.CharField(
         max_length=255,
         verbose_name="Бөлүм аталышы"
@@ -25,7 +23,6 @@ class CouncilSection(models.Model):
 
 
 class CouncilDocument(models.Model):
-    # Материал/документ внутри раздела
     section = models.ForeignKey(
         CouncilSection,
         on_delete=models.CASCADE,
@@ -58,10 +55,8 @@ class CouncilDocument(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        # Биринчи ирет сактайбыз – файл диске түшсүн
         super().save(*args, **kwargs)
 
-        # Файлдан HTML чыгарып алабыз
         html = file_to_html(self.file)
         if html and html != self.content_html:
             self.content_html = html

@@ -1,12 +1,11 @@
 from modeltranslation.translator import register, TranslationOptions
-from .models import Title, Description
+from .models import TypeNotification, Notification
 
 
-@register(Title)
-class TitleTranslation(TranslationOptions):
-    fields = ("title",)
+@register(TypeNotification)
+class TypeNotificationTranslation(TranslationOptions):
+    fields = ("type",)
 
-
-@register(Description)
-class DescriptionTranslation(TranslationOptions):
-    fields = ("title", "description")
+@register(Notification)
+class NotificationTranslation(TranslationOptions):
+    fields = ('types', "title", "description")

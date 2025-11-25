@@ -1,8 +1,7 @@
-# app/council/admin.py
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 from .models import CouncilSection, CouncilDocument
-from .translations import *  # чтобы подхватились TranslationOptions
+from .translations import *
 
 
 class CouncilSectionAdmin(TranslationAdmin):
@@ -32,7 +31,6 @@ class CouncilDocumentAdmin(TranslationAdmin):
         }),
     )
 
-    # HTML генерим автоматически – делаем его только для чтения
     readonly_fields = ['content_html_ru', 'content_html_ky']
 
     list_display = ['title_ru', 'title_ky', 'section']
