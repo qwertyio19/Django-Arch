@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.utils import timezone
 
 class CartModel(models.Model):
     title = models.CharField(max_length=155, verbose_name="ФИО")
@@ -28,3 +29,130 @@ class HeadlinesModel(models.Model):
     class Meta:
         verbose_name = "Башкы беттеги заголовок"
         verbose_name_plural = "Башкы беттеги заголовоктор"
+
+
+class VisitorStatistics(models.Model):
+    """Простая модель для подсчета посетителей сайта"""
+    date = models.DateField(
+        unique=True, 
+        verbose_name='Дата', 
+        default=timezone.now
+    )
+    visitors = models.IntegerField(
+        default=0, 
+        verbose_name='Посетители'
+    )
+    
+    class Meta:
+        verbose_name = 'Статистика посещений'
+        verbose_name_plural = 'Статистика посещений'
+    
+    def __str__(self):
+        return f"Статистика за {self.date}: {self.visitors} посетителей"
+        
+    @classmethod
+    def get_total_statistics(cls):
+        stats = cls.objects.aggregate(
+            total_visitors=models.Sum('visitors')
+        )
+        return {
+            'total_visitors': stats['total_visitors'] or 0
+        }
+
+
+class Footer(models.Model):
+    """Модель для футера и хедера сайта"""
+    logo = models.ImageField(
+        upload_to='images/', 
+        blank=True, null=True, 
+        verbose_name="Логотип"
+    )
+    navigation = models.CharField(
+        max_length=200,
+        default='Навигация',
+        verbose_name="Навигация",
+    )
+    home = models.CharField(
+        max_length=100,
+        default='Башкы',
+        verbose_name="Башкы бет",
+    )
+    aiyl_aimagy = models.CharField(
+        max_length=100,
+        default='Айыл Аймагы',
+        verbose_name="Айыл Аймагы",
+    )
+    aiyl_okmotu = models.CharField(
+        max_length=100,
+        default='Айыл Өкмөтү',
+        verbose_name="Айыл Өкмөтү",
+    )
+    aiyldyk_kenesh = models.CharField(
+        max_length=100,
+        default='Айылдык Кеңеш',
+        verbose_name="Айылдык Кеңеш",
+    )
+    obrashenie_gragdan = models.CharField(
+        max_length=100,
+        default='Жарандардын кайрылуулары',
+        verbose_name="Жарандардын кайрылуулары",
+    )
+    novosti = models.CharField(
+        max_length=100,
+        default='Жаңылыктар',
+        verbose_name="Жаңылыктар",
+    )
+    obiavlenie = models.CharField(
+        max_length=100,
+        default='Жарнамалар',
+        verbose_name="Жарнамалар",
+    )
+    statistic_title = models.CharField(
+        max_length=100,
+        default='Статистика',
+        verbose_name="Статистиканын аталышы",
+        help_text="Статистика бөлүмүнүн аталышы"
+    )
+    show_statistics = models.BooleanField(
+        default=True,
+        verbose_name="Статистиканы көрсөтүү"
+    )
+    title_address = models.CharField(
+        max_length=50,
+        default="Адрес",
+        verbose_name="Адрес",
+        help_text="Колонтитулда көрсөтүлө турган дарек сөзү"
+    )
+    address = models.CharField(
+        max_length=50,
+        verbose_name="Адрес",
+        help_text="Колонтитулда көрсөтүлө турган дарек"
+    )
+    title_phone = models.CharField(
+        max_length=50,
+        default="Телефон",
+        verbose_name="Телефон",
+        help_text="Колонтитулда көрсөтүлө турган телефон сөзү"
+    )
+    phone = models.CharField(
+        max_length=50,
+        verbose_name="Телефон",
+        help_text="Колонтитулда көрсөтүлө турган телефон номери"
+    )
+    soicial_media = models.CharField(
+        max_length=50,
+        default="соц-тармак",
+        verbose_name="соц-тармак"
+    )
+    facebook = models.URLField(
+        blank=True,
+        verbose_name="Социалдык тармак",
+        help_text="Facebook шилтемеңизди киргизиңиз"
+    )
+    
+    def __str__(self):
+        return "Хэдерлер жана футерлер"
+    
+    class Meta:
+        verbose_name = 'Хэдер жана футер'
+        verbose_name_plural = 'Хэдерлер жана футерлер'
