@@ -33,6 +33,7 @@ MY_APPS = [
     'apps.kenesh',
     'apps.notifications',
     'apps.base',
+    'apps.news',
 ]
 
 DJANGO_APPS = [
