@@ -1,5 +1,5 @@
 from modeltranslation.translator import register, TranslationOptions
-from .models import TypeNotification, Notification
+from apps.notifications.models import TypeNotification, Notification
 
 
 @register(TypeNotification)
@@ -8,4 +8,4 @@ class TypeNotificationTranslation(TranslationOptions):
 
 @register(Notification)
 class NotificationTranslation(TranslationOptions):
-    fields = ('types', "title", "description")
+    fields = ('types', "title", "description", 'date')

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import TypeNotification, Notification
+from apps.notifications.models import TypeNotification, Notification
 
 
 class TypeNotificationSerializer(serializers.ModelSerializer):
@@ -18,5 +18,6 @@ class NotificationSerializer(serializers.ModelSerializer):
             "types",
             "title",
             "description",
+            'date',
             "image",
         ]

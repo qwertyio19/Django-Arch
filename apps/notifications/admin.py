@@ -1,7 +1,7 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 from .translation import *
-from .models import TypeNotification, Notification
+from apps.notifications.models import TypeNotification, Notification
 
 
 class TypeNotificationAdmin(TranslationAdmin):
@@ -21,10 +21,10 @@ class TypeNotificationAdmin(TranslationAdmin):
 class NotificationAdmin(TranslationAdmin):
     fieldsets = (
         ('Русская версия', {
-            'fields': ['title_ru', 'description_ru'],
+            'fields': ['title_ru', 'description_ru', 'date_ru'],
         }),
         ('Кыргызская версия', {
-            'fields': ['title_ky', 'description_ky'],
+            'fields': ['title_ky', 'description_ky', 'date_ky'],
         }),
         ('Файл', {
             'fields': ['types', 'image'],
@@ -32,7 +32,7 @@ class NotificationAdmin(TranslationAdmin):
     )
 
 
-    list_display = ['title_ru', 'title_ky', 'types']
+    list_display = ['title_ru', 'title_ky', 'types', 'date_ru', 'date_ky']
     list_filter = ['types'] 
     search_fields = [
         'title_ru',
@@ -40,7 +40,9 @@ class NotificationAdmin(TranslationAdmin):
         'description_ru',
         'description_ky',
         'types__title_ru', 
-        'types__title_ky', 
+        'types__title_ky',
+        'date_ru',
+        'date_ky',
     ]
 
 admin.site.register(TypeNotification, TypeNotificationAdmin)

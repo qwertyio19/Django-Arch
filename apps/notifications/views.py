@@ -1,6 +1,6 @@
 from rest_framework import mixins, viewsets
-from .models import TypeNotification, Notification
-from .serializers import TypeNotificationSerializer, NotificationSerializer
+from apps.notifications.models import TypeNotification, Notification
+from apps.notifications.serializers import TypeNotificationSerializer, NotificationSerializer
 
 
 class TypeNotificationView(mixins.ListModelMixin,

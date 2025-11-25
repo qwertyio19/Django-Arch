@@ -31,6 +31,10 @@ class Notification(models.Model):
         verbose_name="Сүрөттөмө",
         blank=True
     )
+    date = models.CharField(
+        max_length=255,
+        verbose_name="Күнү"
+        )
     image = models.ImageField(
         upload_to="notifications/",
         verbose_name="Жарнаманын cүрөтү"
