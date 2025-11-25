@@ -137,22 +137,3 @@ STATIC_ROOT = BASE_DIR / 'static/'
 
 
 MODELTRANSLATION_FALLBACK_LANGUAGES = ()
-
-
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    "192.168.1.6",
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "http://192.168.1.6:5000",
-    "http://localhost:5000",
-]
-
-CORS_ALLOWED_ORIGINS = [
-    "http://192.168.1.6:5000",
-    "http://localhost:5000",
-]
-
-CORS_ALLOW_CREDENTIALS = True
