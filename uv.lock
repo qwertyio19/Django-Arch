@@ -729,7 +729,6 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "django", specifier = ">=5.2.6" },
-    { name = "django-ckeditor" },
     { name = "django-ckeditor", specifier = ">=6.7.3" },
     { name = "django-cors-headers", specifier = ">=4.9.0" },
     { name = "django-jazzmin", specifier = ">=3.0.1" },

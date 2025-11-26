@@ -21,3 +21,8 @@ class VisitorStatisticsViewSet(viewsets.ViewSet):
     def list(self, request):
         data = VisitorStatistics.get_total_statistics()
         return response(data)
+    
+class PagetitlesViewSets(viewsets.ModelViewSet):
+    queryset = PagetitlesModel.objects.all()
+    serializer_class = PagetitlesSeriallizers
+

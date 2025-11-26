@@ -80,3 +80,13 @@ class VisitorStatisticsAdmin(admin.ModelAdmin):
     list_display = ['date', 'visitors']
     actions = [reset_visitors]
 admin.site.register(VisitorStatistics, VisitorStatisticsAdmin)
+
+class PagetitlesAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ('Кыргызская версия', {
+            'fields': ['ruraldistrict_ky', 'ruralcouncil_ky', 'vilagecouncil_ky', 'news_ky', 'announcement_ky'],
+        }),
+        ('Русская версия', {
+            'fields': ['ruraldistrict_ru', 'ruralcouncil_ru', 'vilagecouncil_ru', 'news_ru', 'announcement_ru'],
+        }),
+    )

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework import serializers
-from apps.base.models import Footer, VisitorStatistics, HeadlinesModel, CartModel
+from apps.base.models import Footer, VisitorStatistics, HeadlinesModel, CartModel, PagetitlesModel
 
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,3 +27,10 @@ class VisitorStatisticsSerializer(serializers.ModelSerializer):
     class Meta:
         model = VisitorStatistics
         fields = ["date", "visitors"]
+
+
+class PagetitlesSeriallizers(serializers.ModelSerializer):
+    class Meta:
+        model = PagetitlesModel
+        fields = ['id', 'ruraldistrict', 'ruralcouncil', 'vilagecouncil', 'news', 'announcement']
+        
