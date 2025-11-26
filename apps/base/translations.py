@@ -17,8 +17,6 @@ class FooterTranslation(TranslationOptions):
         'home', 'address', 'aiyl_aimagy', 'aiyl_okmotu', 'aiyldyk_kenesh',
         'obrashenie_gragdan', 'novosti', 'obiavlenie', 'soicial_media'
     )
-register(PagetitlesModel)
+@register(PagetitlesModel)
 class PagetitlesTranslation(TranslationOptions):
-    fields = (
-        'ruraldistrict', 'ruralcouncil', 'vilagecouncil', 'news', 'announcement'
-    )
+    fields = ('ruraldistrict', 'ruralcouncil', 'villagecouncil', 'news', 'announcement')

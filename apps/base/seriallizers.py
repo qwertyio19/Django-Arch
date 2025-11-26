@@ -32,5 +32,5 @@ class VisitorStatisticsSerializer(serializers.ModelSerializer):
 class PagetitlesSeriallizers(serializers.ModelSerializer):
     class Meta:
         model = PagetitlesModel
-        fields = ['id', 'ruraldistrict', 'ruralcouncil', 'vilagecouncil', 'news', 'announcement']
+        fields = ['id', 'ruraldistrict', 'ruralcouncil', 'villagecouncil', 'news', 'announcement']
         

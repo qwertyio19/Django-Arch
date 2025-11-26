@@ -164,3 +164,10 @@ class PagetitlesModel(models.Model):
     villagecouncil = models.CharField(max_length=255, verbose_name='Айылдык кеңеш', default='Айылдык кеңеш')
     news = models.CharField(max_length=255, verbose_name='Жанылыктар', default='Жанылыктар')
     announcement = models.CharField(max_length=255, verbose_name='Жарнамалар', default='Жарнамалар')
+
+    def __str__(self):
+        return self.ruraldistrict
+    
+    class Meta:
+        verbose_name = 'Беттеги аталыш'
+        verbose_name_plural = 'Беттеги аталыштар'

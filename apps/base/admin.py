@@ -81,12 +81,13 @@ class VisitorStatisticsAdmin(admin.ModelAdmin):
     actions = [reset_visitors]
 admin.site.register(VisitorStatistics, VisitorStatisticsAdmin)
 
-class PagetitlesAdmin(admin.ModelAdmin):
+class PagetitlesAdmin(TranslationAdmin):
     fieldsets = (
         ('Кыргызская версия', {
-            'fields': ['ruraldistrict_ky', 'ruralcouncil_ky', 'vilagecouncil_ky', 'news_ky', 'announcement_ky'],
+            'fields': ['ruraldistrict_ky', 'ruralcouncil_ky', 'villagecouncil_ky', 'news_ky', 'announcement_ky'],
         }),
         ('Русская версия', {
-            'fields': ['ruraldistrict_ru', 'ruralcouncil_ru', 'vilagecouncil_ru', 'news_ru', 'announcement_ru'],
+            'fields': ['ruraldistrict_ru', 'ruralcouncil_ru', 'villagecouncil_ru', 'news_ru', 'announcement_ru'],
         }),
     )
+admin.site.register(PagetitlesModel, PagetitlesAdmin)
