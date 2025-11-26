@@ -34,6 +34,7 @@ MY_APPS = [
     'apps.notifications',
     'apps.base',
     'apps.news',
+    'apps.administration',
 ]
 
 DJANGO_APPS = [

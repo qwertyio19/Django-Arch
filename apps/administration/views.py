@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from apps.administration.models import TypeAdministration, Management
+from apps.administration.serializers import TypeAdministrationSerializer, ManagementSerializer
 
-# Create your views here.
+class TypeAdministrationViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = TypeAdministration.objects.all()
+    serializer_class = TypeAdministrationSerializer
+
+
+class ManagementViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Management.objects.all()
+    serializer_class = ManagementSerializer

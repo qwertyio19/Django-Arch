@@ -8,4 +8,4 @@ class TypeNotificationTranslation(TranslationOptions):
 
 @register(Notification)
 class NotificationTranslation(TranslationOptions):
-    fields = ('types', "title", "description", 'date')
+    fields = ("title", "description", 'date')
