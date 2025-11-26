@@ -18,6 +18,7 @@ urlpatterns += i18n_patterns(
     path('api/v1/kenesh/', include('apps.kenesh.urls')),
     path('api/v1/notifications/', include('apps.notifications.urls')),
     path('api/v1/news/', include('apps.news.urls')),
+    path('api/v1/base/', include('apps.base.urls')),
 )
 
 
