@@ -12,8 +12,8 @@ class CouncilSectionViewSet(mixins.ListModelMixin,
 
 
 class CouncilDocumentViewSet(mixins.ListModelMixin,
-                             mixins.RetrieveModelMixin,
-                             viewsets.GenericViewSet):
+                            mixins.RetrieveModelMixin,
+                            viewsets.GenericViewSet):
     queryset = CouncilDocument.objects.all()
     serializer_class = CouncilDocumentSerializer
 
