@@ -1,0 +1,50 @@
+[project]
+name = "uv-test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "django>=5.2.6",
+    "django-ckeditor>=6.7.3",
+    "django-cors-headers>=4.9.0",
+    "django-jazzmin>=3.0.1",
+    "django-modeltranslation>=0.19.17",
+    "djangorestframework>=3.16.1",
+    "djangorestframework-simplejwt>=5.5.1",
+    "drf-yasg>=1.21.11",
+    "mammoth>=1.11.0",
+    "pdfplumber>=0.11.8",
+    "pillow>=12.0.0",
+    "psycopg2-binary>=2.9.10",
+    "python-dotenv>=1.1.1",
+    "ruff>=0.13.2",
+]
+
+
+# -------------------------
+# 🧹 Настройки Ruff
+# -------------------------
+[tool.ruff]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+line-length = 88
+indent-width = 4
+target-version = "py311"
+
+exclude = [
+    ".venv",
+    "migrations",
+    "__pycache__",
+    "manage.py",
+]
+
+# Исправлять ошибки автоматически (можно отключить при необходимости)
+fix = true
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+docstring-code-format = true
+skip-magic-trailing-comma = false
