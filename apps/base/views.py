@@ -26,3 +26,7 @@ class PagetitlesViewSets(viewsets.ModelViewSet):
     queryset = PagetitlesModel.objects.all()
     serializer_class = PagetitlesSeriallizers
 
+
+class DataViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Portal.objects.all()
+    serializer_class = PortalSerializer

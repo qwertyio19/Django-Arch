@@ -20,6 +20,7 @@ urlpatterns += i18n_patterns(
     path('api/v1/news/', include('apps.news.urls')),
     path('api/v1/base/', include('apps.base.urls')),
     path('api/v1/admin/', include('apps.administration.urls')),
+    path('api/v1/district/', include('apps.district.urls')),
 )
 
 

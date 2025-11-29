@@ -26,6 +26,13 @@ class AntiCorruptionMeasuresViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = AntiCorruptionMeasures.objects.all()
     serializer_class = AntiCorruptionMeasuresSerializer
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        section_id = self.request.query_params.get("section")
+        if section_id:
+            qs = qs.filter(section_id=section_id)
+        return qs
+
 
 class ReportViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Report.objects.all()
@@ -33,5 +40,5 @@ class ReportViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class TitleAdministrationViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = TitleAdministration.objects.all().order_by("id")
+    queryset = TitleAdministration.objects.all()
     serializer_class = TitleAdministrationSerializer

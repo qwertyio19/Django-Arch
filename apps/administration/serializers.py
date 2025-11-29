@@ -43,7 +43,7 @@ class AntiCorruptionMeasuresSerializer(serializers.ModelSerializer):
     common_title = TitleAdministrationSerializer(read_only=True)
     class Meta:
         model = AntiCorruptionMeasures
-        fields = ('id', 'type', 'common_title', 'title', 'real_title', 'description', 'real_description', 'file')
+        fields = ('id', 'type', 'common_title', 'title', 'real_title', 'description', 'real_description', 'file', 'content_html')
 
 
 class ReportImageSerializer(serializers.ModelSerializer):

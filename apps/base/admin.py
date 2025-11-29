@@ -91,3 +91,18 @@ class PagetitlesAdmin(TranslationAdmin):
         }),
     )
 admin.site.register(PagetitlesModel, PagetitlesAdmin)
+
+
+class PortalAdmin(TranslationAdmin):
+    fieldsets = (
+        ('Кыргызская версия', {
+            'fields': ['title_ky'],
+        }),
+        ('Русская версия', {
+            'fields': ['title_ru'],
+        }),
+        ('Фото жана шилтеме', {
+            'fields': ['image', 'link'],
+        }),
+    )
+admin.site.register(Portal, PortalAdmin)

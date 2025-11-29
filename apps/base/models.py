@@ -171,3 +171,16 @@ class PagetitlesModel(models.Model):
     class Meta:
         verbose_name = 'Беттеги аталыш'
         verbose_name_plural = 'Беттеги аталыштар'
+
+
+class Portal(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Порталдын аталышы')
+    image = models.ImageField(upload_to='portal_images/', verbose_name='Порталдын сүрөтү')
+    link = models.URLField(verbose_name='Порталга шилтеме')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Кыргыз Республикасынын мамлекеттик порталы'
+        verbose_name_plural = 'Кыргыз Республикасынын мамлекеттик порталдары'

@@ -1,5 +1,5 @@
 from modeltranslation.translator import register, TranslationOptions
-from apps.base.models import CartModel, HeadlinesModel, Footer, PagetitlesModel
+from apps.base.models import CartModel, HeadlinesModel, Footer, PagetitlesModel, Portal
 
 @register(CartModel)
 class CatalogsTranslation(TranslationOptions):
@@ -20,3 +20,8 @@ class FooterTranslation(TranslationOptions):
 @register(PagetitlesModel)
 class PagetitlesTranslation(TranslationOptions):
     fields = ('ruraldistrict', 'ruralcouncil', 'villagecouncil', 'news', 'announcement')
+
+
+@register(Portal)
+class PortalTranslation(TranslationOptions):
+    fields = ('title',)
