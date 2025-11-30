@@ -9,6 +9,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+IS_PRODUCTION = os.getenv("PRODUCTION", "False").lower() == "true"
+
+if IS_PRODUCTION:
+    from .production import *
+else:
+    from .development import *
+
 THEME_APPS = [
     'jazzmin',
 ]
