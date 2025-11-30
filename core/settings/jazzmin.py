@@ -1,4 +1,3 @@
-#jazzmin
 JAZZMIN_SETTINGS = {
     "navbar_small_text": False,
     "footer_small_text": False,

@@ -6,24 +6,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-DEBUG = False
-
-if DEBUG:
-    try:
-        from core.settings.development import *
-    except ImportError:
-        raise ImportError("Файл development.py не найден")
-else:
-    try:
-        from core.settings.production import *
-    except ImportError:
-        raise ImportError("Файл production.py не найден")
-
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
-
-
-ALLOWED_HOSTS = ["*"]
 
 THEME_APPS = [
     'jazzmin',
@@ -139,5 +123,22 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static/'
 
-
 MODELTRANSLATION_FALLBACK_LANGUAGES = ()
+
+DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"
+
+ALLOWED_HOSTS = [
+    h.strip()
+    for h in os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+    if h.strip()
+]
+
+CORS_ALLOW_ALL_ORIGINS = os.getenv("DJANGO_CORS_ALLOW_ALL_ORIGINS", "False").lower() == "true"
+
+CORS_ALLOWED_ORIGINS = [
+    o.strip()
+    for o in os.getenv("DJANGO_CORS_ALLOWED_ORIGINS", "").split(",")
+    if o.strip()
+]
+
+CORS_ALLOW_CREDENTIALS = False
