@@ -12,5 +12,3 @@ uv run python manage.py createsuperuser
 
 Для запуска проекта локально
 uv run python manage.py runserver
-
-При деплое на сервер измени manage.py на core.settings.production
