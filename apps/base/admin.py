@@ -7,10 +7,10 @@ from apps.base.models import CartModel, VisitorStatistics
 class CartAdmin(TranslationAdmin):
     fieldsets = (
         ('Кыргызская версия', {
-            'fields': ['title_ky', 'description_ky'],
+            'fields': ['head_ky', 'full_name_ky', 'words_ky', 'description_ky'],
         }),
         ('Русская версия', {
-            'fields': ['title_ru', 'description_ru'],
+            'fields': ['head_ru', 'full_name_ru', 'words_ru', 'description_ru'],
         }),
         ('Изображния', {
             'fields': ['image'],

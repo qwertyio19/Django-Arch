@@ -29,8 +29,7 @@ class Data(models.Model):
         related_name='data',
         verbose_name='Түрү'
     )
-    date = models.CharField(
-        max_length=255,
+    date = models.DateField(
         verbose_name='Жылы'
     )
     description = RichTextField(
@@ -38,8 +37,8 @@ class Data(models.Model):
     )
 
     def __str__(self):
-        return self.date
-    
+        return self.date.strftime('%Y') if self.date else ''
+
     class Meta:
         verbose_name = 'Айыл аймагы жөнүндө'
         verbose_name_plural = 'Айыл аймагы жөнүндө'

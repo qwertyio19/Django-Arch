@@ -17,7 +17,11 @@ class DataImageSerializer(serializers.ModelSerializer):
 class DataSerializer(serializers.ModelSerializer):
     type_title = TypeTitleSerializer(read_only=True)
     images = DataImageSerializer(many=True, read_only=True)
+    year = serializers.SerializerMethodField()
 
     class Meta:
         model = Data
-        fields = ('id', 'type_title', 'date', 'description', 'images')
+        fields = ('id', 'type_title', 'year', 'description', 'images')
+
+    def get_year(self, obj):
+        return obj.date.year if obj.date else None
