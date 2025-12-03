@@ -27,13 +27,13 @@ class DataImageInline(admin.TabularInline):
 class DataAdmin(TranslationAdmin):
     fieldsets = (
         ('Кыргызская версия', {
-            'fields': ('date_ky', 'description_ky'),
+            'fields': ('description_ky',),
         }),
         ('Русская версия', {
-            'fields': ('date_ru', 'description_ru'),
+            'fields': ('description_ru',),
         }),
-        ('Түрү', {
-            'fields': ['type_title',],
+        ('Жалпы маалымат', {
+            'fields': ('date', 'type_title',),
         }),
     )
 

@@ -8,4 +8,4 @@ class TypeTitleTranslation(TranslationOptions):
 
 @register(Data)
 class DataTranslation(TranslationOptions):
-    fields = ('date', 'description')
+    fields = ('description',)

@@ -3,7 +3,7 @@ from apps.base.models import CartModel, HeadlinesModel, Footer, PagetitlesModel,
 
 @register(CartModel)
 class CatalogsTranslation(TranslationOptions):
-    fields = ('title', 'description')
+    fields = ('head', 'full_name', 'words', 'description')
 
 
 @register(HeadlinesModel)

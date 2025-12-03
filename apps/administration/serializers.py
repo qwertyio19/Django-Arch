@@ -38,12 +38,37 @@ class VacancySerializer(serializers.ModelSerializer):
         fields = ('id', 'type', 'title', 'description')
 
 
-class AntiCorruptionMeasuresSerializer(serializers.ModelSerializer):
-    type = TypeAdministrationSerializer(read_only=True)
+class AntiCorruptionMeasuresItemSerializer(serializers.ModelSerializer):
     common_title = TitleAdministrationSerializer(read_only=True)
+
     class Meta:
         model = AntiCorruptionMeasures
-        fields = ('id', 'type', 'common_title', 'title', 'real_title', 'description', 'real_description', 'file', 'content_html')
+        fields = (
+            'common_title',
+            'title',
+            'real_title',
+            'description',
+            'real_description',
+            'file',
+            'content_html',
+        )
+
+
+class AntiCorruptionMeasuresSerializer(serializers.ModelSerializer):
+    type = TypeAdministrationSerializer(read_only=True)
+    items = serializers.SerializerMethodField()
+
+    class Meta:
+        model = AntiCorruptionMeasures
+        fields = ('id', 'type', 'items')
+
+    def get_items(self, obj):
+        return [
+            AntiCorruptionMeasuresItemSerializer(
+                obj,
+                context=self.context
+            ).data
+        ]
 
 
 class ReportImageSerializer(serializers.ModelSerializer):

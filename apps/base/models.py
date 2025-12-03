@@ -3,12 +3,14 @@ from ckeditor.fields import RichTextField
 from django.utils import timezone
 
 class CartModel(models.Model):
-    title = models.CharField(max_length=155, verbose_name="ФИО")
+    head = models.CharField(max_length=500, verbose_name='Көкбел айыл өкмөтүнүн башчысы', default='Көкбел айыл өкмөтүнүн башчысы')
+    full_name = models.CharField(max_length=155, verbose_name="ФИО")
+    words = models.CharField(max_length=255, default='Башчынын сөзү', verbose_name='Башчынын сөзү')
     description = RichTextField(blank=True, verbose_name="Сөзү (глава)")
     image = models.ImageField(blank=True, null=True, verbose_name="Главанын сүрөтү")
 
     def __str__(self):
-        return self.title
+        return self.head
     
     class Meta:
         verbose_name = "Башчынын сөздөрү"

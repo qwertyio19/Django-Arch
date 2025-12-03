@@ -5,7 +5,7 @@ from apps.base.models import Footer, VisitorStatistics, HeadlinesModel, CartMode
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartModel
-        fields = ['id', 'title', 'description', 'image']
+        fields = ['id', 'head', 'full_name', 'words', 'description', 'image']
 
 class HeadlinesSerializer(serializers.ModelSerializer):
     class Meta:

@@ -16,7 +16,7 @@ venv/
 *.pyc
 __pycache__/
 db.sqlite3
-media/
+back_media/
 staticfiles/
 
 # Django migrations
@@ -51,4 +51,4 @@ local_settings.py
 .env.test
 
 # Staticfiles collected
-/static/
+/back_static/

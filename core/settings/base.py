@@ -124,11 +124,11 @@ REST_FRAMEWORK = {
     ),
 }
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media/'
+MEDIA_URL = 'back_media/'
+MEDIA_ROOT = BASE_DIR / 'back_media/'
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static/'
+STATIC_URL = '/back_static/'
+STATIC_ROOT = BASE_DIR / 'back_static/'
 
 MODELTRANSLATION_FALLBACK_LANGUAGES = ()
 
