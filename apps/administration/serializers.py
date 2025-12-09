@@ -49,6 +49,7 @@ class AntiCorruptionMeasuresItemSerializer(serializers.ModelSerializer):
             'real_title',
             'description',
             'real_description',
+            'image',
             'file',
             'content_html',
         )

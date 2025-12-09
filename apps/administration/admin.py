@@ -71,7 +71,7 @@ class AntiCorruptionMeasuresAdmin(TranslationAdmin):
             'fields': ['title_ru', 'real_title_ru', 'description_ru', 'real_description_ru'],
         }),
         ('Түрү жана файл', {
-            'fields': ['type', 'file', 'content_html'],
+            'fields': ['type', 'image', 'file', 'content_html'],
         }),
     )
 admin.site.register(AntiCorruptionMeasures, AntiCorruptionMeasuresAdmin)

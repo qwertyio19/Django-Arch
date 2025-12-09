@@ -145,6 +145,12 @@ class AntiCorruptionMeasures(models.Model):
     real_description = RichTextField(
         verbose_name='Түшүндүрмөсү'
     )
+    image = models.ImageField(
+        upload_to='anti_corrup_images/',
+        verbose_name='Сүрөт',
+        blank=True,
+        null=True
+    )
     file = models.FileField(
         upload_to="anti_corrup_docs/",
         verbose_name="Файл (DOCX/PDF)"
