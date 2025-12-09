@@ -16,6 +16,8 @@ check-job:
   stage: check
   script:
     - ls -la /var/www/
+  tags:
+    - geekspro
 
 pull-job:
   stage: pull
