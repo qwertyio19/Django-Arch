@@ -1,5 +1,4 @@
 stages:
-  - check
   - pull
   - run
   - restart-nginx
@@ -11,13 +10,6 @@ before_script:
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
-
-check-job:
-  stage: check
-  script:
-    - ls -la /var/www/
-  tags:
-    - geekspro
 
 pull-job:
   stage: pull
