@@ -1,4 +1,5 @@
 stages:
+  - check
   - pull
   - run
   - restart-nginx
