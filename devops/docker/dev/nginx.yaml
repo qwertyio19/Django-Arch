@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  nginx:
+    container_name: _nginx
+    image: nginx:1.25.2-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ../nginx/conf.dev:/etc/nginx/conf.d
+      - ../../back_static:/opt/services/kokbel_backend/back_static
+      - ../../back_media:/opt/services/kokbel_backend/back_media
+      - ../../../_frontend/dist:/opt/services/_frontend/dist
+    networks:
+      - nginx_network
+    depends_on:
+      - kokbel_backend
+

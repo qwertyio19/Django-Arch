@@ -1,0 +1,48 @@
+services:
+  kokbel_backend:
+    container_name: kokbel_backend
+    build:
+      context: ../../../kokbel_backend/
+      dockerfile: devops/Dockerfile.back
+    restart: unless-stopped
+    volumes:
+      - ../../:/opt/services/kok-bel/kokbel_backend/
+    env_file:
+      - ../../.env
+    command:
+      sh -c "python manage.py makemigrations && 
+      python manage.py migrate &&
+      python manage.py collectstatic --no-input && 
+      python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8004:8000"
+    networks:
+      # - main_network
+      # - nginx_network
+      - main-server_main-database
+      - main-server_nginx-global-network
+
+  # main_database:
+  #   image: postgres:15-alpine
+  #   container_name: main_database
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ../../storage:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - main_network
+  #   env_file:
+  #     - ../../.env
+
+
+networks:
+  main-server_main-database:
+    external: true
+  main-server_nginx-global-network:
+    external: true
+
+  # main_network:
+  #   driver: bridge
+  # nginx_network:
+  #   driver: bridge
