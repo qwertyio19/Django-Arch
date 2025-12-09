@@ -11,6 +11,11 @@ before_script:
   - chmod 600 ~/.ssh/id_rsa
   - ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
 
+check-job:
+  stage: check
+  script:
+    - ls -la /var/www/
+
 pull-job:
   stage: pull
   image: alpine:latest
