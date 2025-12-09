@@ -17,6 +17,8 @@ dependencies = [
     "pdfplumber>=0.11.8",
     "pillow>=12.0.0",
     "psycopg2-binary>=2.9.10",
+    "pytest>=9.0.2",
+    "pytest-django>=4.11.1",
     "python-dotenv>=1.1.1",
     "ruff>=0.13.2",
 ]
@@ -27,7 +29,7 @@ dependencies = [
 # -------------------------
 [tool.ruff]
 select = ["E", "F", "W", "I"]
-ignore = ["E501"]
+ignore = ["E501", "B101"]
 line-length = 88
 indent-width = 4
 target-version = "py311"
