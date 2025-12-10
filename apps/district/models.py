@@ -37,7 +37,7 @@ class Data(models.Model):
     )
 
     def __str__(self):
-        return self.date.strftime('%Y') if self.date else ''
+        return f'{self.type_title} - {self.date}'
 
     class Meta:
         verbose_name = 'Айыл аймагы жөнүндө'

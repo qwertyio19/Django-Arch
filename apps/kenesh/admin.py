@@ -55,7 +55,7 @@ class DeputiesAdmin(TranslationAdmin):
         }),
     )
 
-    list_display = ['name_ru', 'name_ky', 'position_ru', 'position_ky', 'section']
+    list_display = ['name_ky', 'position_ky', 'section']
     list_filter = ['section']
     search_fields = ['name_ru', 'name_ky', 'position_ru', 'position_ky']
 admin.site.register(Deputies, DeputiesAdmin)

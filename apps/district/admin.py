@@ -38,6 +38,6 @@ class DataAdmin(TranslationAdmin):
     )
 
     inlines = [DataImageInline]
-    list_display = ('id', 'date')
+    list_display = ('type_title', 'date')
 
 admin.site.register(Data, DataAdmin)
