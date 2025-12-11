@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DEBUG = False  # для прода/стейджа — всегда False
+DEBUG = os.getenv("DEBUG")   
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
@@ -23,6 +23,12 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = False
+
+CSRF_TRUSTED_ORIGINS = [
+    f"https://{host}" for host in ALLOWED_HOSTS
+] + [
+    f"http://{host}" for host in ALLOWED_HOSTS
+]
 
 DATABASES = {
     'default': {
