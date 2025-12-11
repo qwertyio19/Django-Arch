@@ -1,44 +1,9 @@
-stages:
-  - pull
-  - run
-  - restart-nginx
+include: 
+  - project: 'template/ci-cd'
+    ref: 'main'
+    file: '.gitlab-ci.yml'
 
-
-before_script:
-  - apk add --no-cache openssh-client bash
-  - mkdir -p ~/.ssh
-  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-  - chmod 600 ~/.ssh/id_rsa
-  - ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
-
-pull-job:
-  stage: pull
-  image: alpine:latest
-  rules:
-  - if: '$CI_COMMIT_BRANCH == "staging"'
-  script:
-    - ssh $SERVER_USER@$SERVER_HOST "cd $BASE_DIR/kok-bel/kokbel_backend && git pull origin staging"
-  tags:
-    - geekspro
-
-run-job:
-  stage: run
-  image: alpine:latest
-  needs: ["pull-job"]
-  rules:
-  - if: '$CI_COMMIT_BRANCH == "staging"'
-  script:
-    - ssh $SERVER_USER@$SERVER_HOST "cd $BASE_DIR/kok-bel/kokbel_backend && docker compose -f ./devops/docker/production.yaml up --build -d"
-  tags:
-    - geekspro
-
-restart-nginx-job:
-  stage: restart-nginx
-  image: alpine:latest
-  needs: ["pull-job", "run-job"]
-  rules:
-  - if: '$CI_COMMIT_BRANCH == "staging"'
-  script:
-    - ssh $SERVER_USER@$SERVER_HOST "docker compose -f $BASE_DIR/main-server/docker-compose-main.yaml restart global_nginx"
-  tags:
-    - geekspro
+variables:
+  PROJECT_NAME: "kok-bel"
+  DIR_NAME: "kokbel"
+  DIRECTION: "backend"
