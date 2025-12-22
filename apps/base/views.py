@@ -30,3 +30,8 @@ class PagetitlesViewSets(viewsets.ModelViewSet):
 class DataViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Portal.objects.all()
     serializer_class = PortalSerializer
+
+
+class LatestNewsViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = LatestNews.objects.all()
+    serializer_class = LatestNewsSerializer

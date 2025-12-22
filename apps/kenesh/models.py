@@ -122,16 +122,20 @@ class Deputies(models.Model):
         upload_to='deputies/',
         verbose_name="Депутаттын сүрөтү"
     )
+    is_first = models.BooleanField(
+        default=False,
+        verbose_name="Биринчи"
+    )
 
 
     class Meta:
         verbose_name = "Айылдык кеңеш депутаты"
         verbose_name_plural = "Айылдык кеңеш депутаттары"
-        ordering = ["id"]
+        ordering = ['-is_first', 'name']
 
     def __str__(self):
         return self.name
-    
+
 
 
 class Commission(models.Model):

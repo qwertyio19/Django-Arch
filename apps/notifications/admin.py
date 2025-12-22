@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.core.exceptions import ValidationError
 from modeltranslation.admin import TranslationAdmin
 from .translation import *
 from apps.notifications.models import TypeNotification, Notification
@@ -15,7 +16,7 @@ class TypeNotificationAdmin(TranslationAdmin):
     )
 
     list_display = ['type_ru', 'type_ky']
-    search_fields = ['type_ru', 'type_ky']  
+    search_fields = ['type_ru', 'type_ky']
 
 
 class NotificationAdmin(TranslationAdmin):
@@ -27,13 +28,12 @@ class NotificationAdmin(TranslationAdmin):
             'fields': ['title_ky', 'description_ky', 'date_ky'],
         }),
         ('Файл', {
-            'fields': ['types', 'image'],
+            'fields': ['types', 'image', "is_active"],
         }),
     )
 
-
     list_display = ['title_ru', 'title_ky', 'types', 'date_ru', 'date_ky']
-    list_filter = ['types'] 
+    list_filter = ['types']
     search_fields = [
         'title_ru',
         'title_ky',
@@ -44,6 +44,15 @@ class NotificationAdmin(TranslationAdmin):
         'date_ru',
         'date_ky',
     ]
+
+    def save_model(self, request, obj, form, change):
+        if obj.is_active:
+            active_count = Notification.objects.filter(is_active=True).count()
+            if active_count >= 4:
+                form.add_error(None, "Максимальное количество активных объявлений — 4")
+                return
+
+        super().save_model(request, obj, form, change)
 
 admin.site.register(TypeNotification, TypeNotificationAdmin)
 admin.site.register(Notification, NotificationAdmin)

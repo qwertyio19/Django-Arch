@@ -20,4 +20,5 @@ class NotificationSerializer(serializers.ModelSerializer):
             "description",
             'date',
             "image",
+            "is_active"
         ]

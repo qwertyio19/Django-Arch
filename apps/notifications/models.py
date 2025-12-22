@@ -39,6 +39,10 @@ class Notification(models.Model):
         upload_to="notifications/",
         verbose_name="Жарнаманын cүрөтү"
     )
+    is_active = models.BooleanField(
+        default=False,
+        verbose_name='Активдүү'
+    )
 
     class Meta:
         verbose_name = "Жарнама"

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.core.exceptions import ValidationError
 from modeltranslation.admin import TranslationAdmin
 from .models import CouncilSection, CouncilDocument, Deputies, Commission
 from .translations import *
@@ -51,13 +52,22 @@ class DeputiesAdmin(TranslationAdmin):
             'fields': ['position_ky', 'name_ky', 'contact_ky', 'district_ky', 'real_district_ky', 'faction_ky', 'real_faction_ky', 'role_ky', 'real_role_ky'],
         }),
         ('Основное', {
-            'fields': ['section', 'real_contact', 'image'],
+            'fields': ['section', 'real_contact', 'image', 'is_first'],
         }),
     )
 
-    list_display = ['name_ky', 'position_ky', 'section']
+    list_display = ['name_ky', 'position_ky', 'section', 'is_first']
     list_filter = ['section']
     search_fields = ['name_ru', 'name_ky', 'position_ru', 'position_ky']
+
+    def save_model(self, request, obj, form, change):
+        if obj.is_first:
+            if Deputies.objects.filter(is_first=True).exclude(id=obj.id).exists():
+                form.add_error('is_first', "Только один депутат может быть первым.")
+                return
+
+        super().save_model(request, obj, form, change)
+
 admin.site.register(Deputies, DeputiesAdmin)
 
 

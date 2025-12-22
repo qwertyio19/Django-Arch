@@ -186,3 +186,24 @@ class Portal(models.Model):
     class Meta:
         verbose_name = 'Кыргыз Республикасынын мамлекеттик порталы'
         verbose_name_plural = 'Кыргыз Республикасынын мамлекеттик порталдары'
+
+
+class LatestNews(models.Model):
+    title = models.CharField(
+        max_length=255, 
+        verbose_name='Жаңылыктын аталышы'
+    )
+    description = RichTextField(
+        verbose_name='Жаңылыктын сүрөттөлүшү',
+    )
+    image = models.ImageField(
+        upload_to='latest_news/', 
+        verbose_name='Жаңылыктын сүрөтү'
+    )
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Акыркы жаңылык'
+        verbose_name_plural = 'Акыркы жаңылыктар'

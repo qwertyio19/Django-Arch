@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework import serializers
-from apps.base.models import Footer, VisitorStatistics, HeadlinesModel, CartModel, PagetitlesModel, Portal
+from apps.base.models import Footer, LatestNews, VisitorStatistics, HeadlinesModel, CartModel, PagetitlesModel, Portal
 
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,3 +40,10 @@ class PortalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Portal
         fields = ['id', 'title', 'image', 'link']
+
+
+
+class LatestNewsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LatestNews
+        fields = ['id', 'title', 'image', 'description']

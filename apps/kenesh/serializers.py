@@ -26,7 +26,7 @@ class DeputiesSerializer(serializers.ModelSerializer):
     section = CouncilSectionSerializer(read_only=True)
     class Meta:
         model = Deputies
-        fields = ["id", 'section', 'position', 'name', 'contact', 'real_contact', 'district', 'real_district', 'faction', 'real_faction', 'role', 'real_role', 'image']
+        fields = ["id", 'section', 'position', 'name', 'contact', 'real_contact', 'district', 'real_district', 'faction', 'real_faction', 'role', 'real_role', 'image', 'is_first']
 
 
 class CommissionSerializer(serializers.ModelSerializer):

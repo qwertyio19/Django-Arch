@@ -106,3 +106,18 @@ class PortalAdmin(TranslationAdmin):
         }),
     )
 admin.site.register(Portal, PortalAdmin)
+
+
+class LatestNewsAdmin(TranslationAdmin):
+    fieldsets = (
+        ('Кыргызская версия', {
+            'fields': ['title_ky', 'description_ky'],
+        }),
+        ('Русская версия', {
+            'fields': ['title_ru', 'description_ru'],
+        }),
+        ('Изображния', {
+            'fields': ['image'],
+        }),
+    )
+admin.site.register(LatestNews, LatestNewsAdmin)
