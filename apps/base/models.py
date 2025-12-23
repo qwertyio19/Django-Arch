@@ -207,3 +207,14 @@ class LatestNews(models.Model):
     class Meta:
         verbose_name = 'Акыркы жаңылык'
         verbose_name_plural = 'Акыркы жаңылыктар'
+
+
+
+class Visit(models.Model):
+    ip_address = models.GenericIPAddressField()
+    path = models.CharField(max_length=200)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Визит"
+        verbose_name_plural = "Визиттер"

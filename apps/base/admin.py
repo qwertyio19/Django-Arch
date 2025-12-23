@@ -1,7 +1,7 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 from apps.base.translations import *
-from apps.base.models import CartModel, VisitorStatistics
+from apps.base.models import CartModel, Visit, VisitorStatistics
 
 
 class CartAdmin(TranslationAdmin):
@@ -121,3 +121,17 @@ class LatestNewsAdmin(TranslationAdmin):
         }),
     )
 admin.site.register(LatestNews, LatestNewsAdmin)
+
+
+@admin.register(Visit)
+class VisitAdmin(admin.ModelAdmin):
+    list_display = ("ip_address", "path", "timestamp")
+    actions = ["clear_statistics"]
+
+    def clear_statistics(self, request, queryset):
+        """
+        Очистка всех записей статистики.
+        """
+        Visit.objects.all().delete()
+        self.message_user(request, "Все записи статистики удалены.")
+    clear_statistics.short_description = "Очистить всю статистику"
