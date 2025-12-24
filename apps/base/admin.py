@@ -84,10 +84,10 @@ admin.site.register(VisitorStatistics, VisitorStatisticsAdmin)
 class PagetitlesAdmin(TranslationAdmin):
     fieldsets = (
         ('Кыргызская версия', {
-            'fields': ['ruraldistrict_ky', 'ruralcouncil_ky', 'villagecouncil_ky', 'news_ky', 'announcement_ky'],
+            'fields': ['base_ky', 'ruraldistrict_ky', 'ruralcouncil_ky', 'villagecouncil_ky', 'appeals_ky', 'news_ky', 'announcement_ky'],
         }),
         ('Русская версия', {
-            'fields': ['ruraldistrict_ru', 'ruralcouncil_ru', 'villagecouncil_ru', 'news_ru', 'announcement_ru'],
+            'fields': ['base_ru', 'ruraldistrict_ru', 'ruralcouncil_ru', 'villagecouncil_ru', 'appeals_ru', 'news_ru', 'announcement_ru'],
         }),
     )
 admin.site.register(PagetitlesModel, PagetitlesAdmin)

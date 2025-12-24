@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.core.exceptions import ValidationError
 from modeltranslation.admin import TranslationAdmin
 from .models import CouncilSection, CouncilDocument, Deputies, Commission
 from .translations import *
@@ -28,11 +27,9 @@ class CouncilDocumentAdmin(TranslationAdmin):
             'fields': ['title_ky', 'description_ky'],
         }),
         ('Файл', {
-            'fields': ['section', 'file', 'content_html'],
+            'fields': ['section', 'file'],
         }),
     )
-
-    readonly_fields = ['content_html']
 
     list_display = ['title_ru', 'title_ky', 'section']
     list_filter = ['section']

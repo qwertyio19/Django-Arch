@@ -161,9 +161,11 @@ class Footer(models.Model):
 
 
 class PagetitlesModel(models.Model):
+    base = models.CharField(max_length=255, verbose_name='Башкы бет', default='Башкы бет')
     ruraldistrict = models.CharField(max_length=255, verbose_name='Айылдык округ', default='Айылдык округ')
     ruralcouncil = models.CharField(max_length=255, verbose_name='Айыл өкмөт', default='Айыл өкмөт')
     villagecouncil = models.CharField(max_length=255, verbose_name='Айылдык кеңеш', default='Айылдык кеңеш')
+    appeals = models.CharField(max_length=255, verbose_name='Жарандардын кайрылуулары', default='Жарандардын кайрылуулары')
     news = models.CharField(max_length=255, verbose_name='Жанылыктар', default='Жанылыктар')
     announcement = models.CharField(max_length=255, verbose_name='Жарнамалар', default='Жарнамалар')
 

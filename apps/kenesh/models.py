@@ -1,5 +1,5 @@
+import os
 from django.db import models
-from .utils import file_to_html
 
 
 class CouncilSection(models.Model):
@@ -22,7 +22,6 @@ class CouncilSection(models.Model):
         return self.title
 
 
-
 class CouncilDocument(models.Model):
     section = models.ForeignKey(
         CouncilSection,
@@ -43,10 +42,6 @@ class CouncilDocument(models.Model):
         upload_to="council_docs/",
         verbose_name="Файл (DOCX/PDF)"
     )
-    content_html = models.TextField(
-        verbose_name="Документтин HTML түрү",
-        blank=True
-    )
 
     class Meta:
         verbose_name = "Айылдык кеңеш документи"
@@ -55,15 +50,7 @@ class CouncilDocument(models.Model):
 
     def __str__(self):
         return self.title
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        html = file_to_html(self.file)
-        if html and html != self.content_html:
-            self.content_html = html
-            super().save(update_fields=["content_html"])
-
+    
 
 class Deputies(models.Model):
     section = models.ForeignKey(

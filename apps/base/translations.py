@@ -19,7 +19,7 @@ class FooterTranslation(TranslationOptions):
     )
 @register(PagetitlesModel)
 class PagetitlesTranslation(TranslationOptions):
-    fields = ('ruraldistrict', 'ruralcouncil', 'villagecouncil', 'news', 'announcement')
+    fields = ('base', 'ruraldistrict', 'ruralcouncil', 'villagecouncil', 'appeals', 'news', 'announcement')
 
 
 @register(Portal)

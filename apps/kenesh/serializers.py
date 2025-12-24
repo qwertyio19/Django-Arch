@@ -18,7 +18,7 @@ class CouncilDocumentSerializer(serializers.ModelSerializer):
             "section",
             "title",
             "description",
-            "content_html",
+            "file",
         ]
 
 

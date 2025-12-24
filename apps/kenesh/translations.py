@@ -1,4 +1,3 @@
-# app/council/translation.py
 from modeltranslation.translator import register, TranslationOptions
 from .models import CouncilSection, CouncilDocument, Deputies, Commission
 
@@ -10,7 +9,7 @@ class CouncilSectionTranslation(TranslationOptions):
 
 @register(CouncilDocument)
 class CouncilDocumentTranslation(TranslationOptions):
-    fields = ("title", "description", "content_html")
+    fields = ("title", "description")
 
 
 @register(Deputies)

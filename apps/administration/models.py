@@ -1,9 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 
-from apps.kenesh.utils import file_to_html
-# Create your models here.
-
 
 class TypeAdministration(models.Model):
     type = models.CharField(
@@ -155,21 +152,9 @@ class AntiCorruptionMeasures(models.Model):
         upload_to="anti_corrup_docs/",
         verbose_name="Файл (DOCX/PDF)"
     )
-    content_html = models.TextField(
-        verbose_name="Документтин HTML түрү",
-        blank=True
-    )
 
     def __str__(self):
         return self.real_title
-    
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        html = file_to_html(self.file)
-        if html and html != self.content_html:
-            self.content_html = html
-            super().save(update_fields=["content_html"])
 
     class Meta:
         verbose_name = 'Коррупцияга каршы чара'
