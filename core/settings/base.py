@@ -43,6 +43,7 @@ LIBRARY_APPS = [
     'drf_yasg',
     'ckeditor',
     'modeltranslation',
+    'django_filters',
     "corsheaders",
 ]
 

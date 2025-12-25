@@ -1,5 +1,7 @@
 from rest_framework import mixins, viewsets
 from rest_framework.decorators import action
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 from apps.notifications.models import TypeNotification, Notification
 from apps.notifications.serializers import TypeNotificationSerializer, NotificationSerializer
 from apps.notifications.paginations import NotificationPagination
@@ -18,6 +20,8 @@ class NotificationView(mixins.ListModelMixin,
     queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
     pagination_class = NotificationPagination
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
+    filterset_fields = ['types']
 
     @action(detail=False, methods=['get'], url_path='active')
     def active_notifications(self, request):
