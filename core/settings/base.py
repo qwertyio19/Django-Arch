@@ -64,7 +64,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'apps.base.middleware.VisitMiddleware',
+    'apps.base.middleware.TrackVisitorMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'

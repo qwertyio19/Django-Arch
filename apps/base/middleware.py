@@ -1,13 +1,23 @@
-from apps.base.models import Visit
+# statistics/middleware.py
+from django.utils.timezone import now
+from apps.base.models import Visitor, PageVisit
 
-class VisitMiddleware:
+
+class TrackVisitorMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
-        Visit.objects.create(
-            ip_address=request.META.get("REMOTE_ADDR"),
-            path=request.path
-        )
+        ip_address = request.META.get('REMOTE_ADDR')
+        page_name = request.path
+
+        visitor, created = Visitor.objects.get_or_create(ip_address=ip_address)
+        if not created:
+            visitor.last_visit = now()
+            visitor.visit_count += 1
+        visitor.save()
+
+        PageVisit.objects.create(page=page_name)
+
         response = self.get_response(request)
         return response

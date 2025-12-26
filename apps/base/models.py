@@ -212,11 +212,27 @@ class LatestNews(models.Model):
 
 
 
-class Visit(models.Model):
-    ip_address = models.GenericIPAddressField()
-    path = models.CharField(max_length=200)
-    timestamp = models.DateTimeField(auto_now_add=True)
+class Visitor(models.Model):
+    ip_address = models.GenericIPAddressField(unique=True)
+    visit_count = models.PositiveIntegerField(default=0)
+    last_visit = models.DateTimeField(default=timezone.now)
 
+    def __str__(self):
+        return self.ip_address
+    
     class Meta:
         verbose_name = "Визит"
         verbose_name_plural = "Визиттер"
+
+
+
+class PageVisit(models.Model):
+    page = models.CharField(max_length=255)
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.page
+    
+    class Meta:
+        verbose_name = "Баракчага кирүү"
+        verbose_name_plural = "Баракчага кирүүлөр"

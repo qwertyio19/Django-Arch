@@ -3,14 +3,14 @@ from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
-from apps.base.services import stats_summary
+from apps.base.services import SiteStatisticsView
 from core.yasg import urlpatterns_yasg
 
 # Основные маршруты (не зависят от мультиязычности)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(urlpatterns_yasg)),
-    path('api/v1/stats/', stats_summary),
+    path('api/v1/stats/', SiteStatisticsView.as_view(), name='site_statistics'),
 ]
 
 

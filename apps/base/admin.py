@@ -1,7 +1,7 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 from apps.base.translations import *
-from apps.base.models import CartModel, Visit, VisitorStatistics
+from apps.base.models import CartModel, HeadlinesModel, Footer, PagetitlesModel, Portal, LatestNews
 
 
 class CartAdmin(TranslationAdmin):
@@ -17,7 +17,6 @@ class CartAdmin(TranslationAdmin):
         }),
     )
 admin.site.register(CartModel, CartAdmin)
-
 
 
 
@@ -66,21 +65,6 @@ class FooterAdmin(admin.ModelAdmin):
     )
 
 
-@admin.action(description='Reset visitors count to zero')
-def reset_visitors(modeladmin, request, queryset):
-    queryset.update(visitors=0)
-
-class VisitorStatisticsAdmin(admin.ModelAdmin):
-    
-    def has_add_permission(self, request):
-        if Footer.objects.exists():
-            return False
-        return True
-    
-    list_display = ['date', 'visitors']
-    actions = [reset_visitors]
-admin.site.register(VisitorStatistics, VisitorStatisticsAdmin)
-
 class PagetitlesAdmin(TranslationAdmin):
     fieldsets = (
         ('Кыргызская версия', {
@@ -121,17 +105,3 @@ class LatestNewsAdmin(TranslationAdmin):
         }),
     )
 admin.site.register(LatestNews, LatestNewsAdmin)
-
-
-@admin.register(Visit)
-class VisitAdmin(admin.ModelAdmin):
-    list_display = ("ip_address", "path", "timestamp")
-    actions = ["clear_statistics"]
-
-    def clear_statistics(self, request, queryset):
-        """
-        Очистка всех записей статистики.
-        """
-        Visit.objects.all().delete()
-        self.message_user(request, "Все записи статистики удалены.")
-    clear_statistics.short_description = "Очистить всю статистику"
