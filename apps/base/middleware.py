@@ -1,4 +1,3 @@
-# statistics/middleware.py
 from django.utils.timezone import now
 from apps.base.models import Visitor, PageVisit
 
@@ -14,7 +13,8 @@ class TrackVisitorMiddleware:
         visitor, created = Visitor.objects.get_or_create(ip_address=ip_address)
         if not created:
             visitor.last_visit = now()
-            visitor.visit_count += 1
+        else:
+            visitor.visit_count = 1
         visitor.save()
 
         PageVisit.objects.create(page=page_name)
