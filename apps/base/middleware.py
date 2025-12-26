@@ -11,10 +11,14 @@ class TrackVisitorMiddleware:
         page_name = request.path
 
         visitor, created = Visitor.objects.get_or_create(ip_address=ip_address)
+
         if not created:
             visitor.last_visit = now()
+            visitor.visit_count += 1
         else:
+            visitor.last_visit = now()
             visitor.visit_count = 1
+
         visitor.save()
 
         PageVisit.objects.create(page=page_name)
