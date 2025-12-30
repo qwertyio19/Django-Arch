@@ -11,7 +11,7 @@ logger = logging.getLogger("stats")
 
 
 class TrackVisitorMiddleware:
-    SESSION_TTL = timedelta(minutes=30)
+    SESSION_TTL = timedelta(minutes=15)
 
     SKIP_EXACT = ("/api/v1/stats/",)
     SKIP_PREFIXES = ("/admin/", "/static/", "/media/")
