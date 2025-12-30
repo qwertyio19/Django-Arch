@@ -40,3 +40,31 @@ DATABASES = {
         'PORT': os.environ.get("POSTGRES_PORT", "5432"),
     }
 }
+
+STATS_LOG_VERBOSE = os.getenv("STATS_LOG_VERBOSE", "0") == "1"
+STATS_LOG_LEVEL = os.getenv("STATS_LOG_LEVEL", "INFO")
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "[{levelname}] {asctime} {name}: {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+    "loggers": {
+        "stats": {
+            "handlers": ["console"],
+            "level": STATS_LOG_LEVEL,
+            "propagate": False,
+        },
+    },
+}

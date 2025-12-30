@@ -135,22 +135,6 @@ STATIC_ROOT = BASE_DIR / 'back_static/'
 
 MODELTRANSLATION_FALLBACK_LANGUAGES = ()
 
-# DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"
-
-# ALLOWED_HOSTS = [
-#     h.strip()
-#     for h in os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
-#     if h.strip()
-# ]
-
-# CORS_ALLOW_ALL_ORIGINS = os.getenv("DJANGO_CORS_ALLOW_ALL_ORIGINS", "False").lower() == "true"
-
-# CORS_ALLOWED_ORIGINS = [
-#     o.strip()
-#     for o in os.getenv("DJANGO_CORS_ALLOWED_ORIGINS", "").split(",")
-#     if o.strip()
-# ]
-
 CORS_ALLOW_CREDENTIALS = False
 
 
