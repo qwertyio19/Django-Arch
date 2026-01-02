@@ -10,6 +10,7 @@ class CouncilSectionSerializer(serializers.ModelSerializer):
 
 class CouncilDocumentSerializer(serializers.ModelSerializer):
     section = CouncilSectionSerializer(read_only=True)
+    file = serializers.SerializerMethodField()
 
     class Meta:
         model = CouncilDocument
@@ -20,6 +21,9 @@ class CouncilDocumentSerializer(serializers.ModelSerializer):
             "description",
             "file",
         ]
+
+    def get_file(self, obj):
+        return obj.file.url if obj.file else None
 
 
 class DeputiesSerializer(serializers.ModelSerializer):

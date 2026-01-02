@@ -40,6 +40,7 @@ class VacancySerializer(serializers.ModelSerializer):
 
 class AntiCorruptionMeasuresItemSerializer(serializers.ModelSerializer):
     common_title = TitleAdministrationSerializer(read_only=True)
+    file = serializers.SerializerMethodField()
 
     class Meta:
         model = AntiCorruptionMeasures
@@ -52,6 +53,9 @@ class AntiCorruptionMeasuresItemSerializer(serializers.ModelSerializer):
             'image',
             'file',
         )
+
+    def get_file(self, obj):
+        return obj.file.url if obj.file else None
 
 
 class AntiCorruptionMeasuresSerializer(serializers.ModelSerializer):
