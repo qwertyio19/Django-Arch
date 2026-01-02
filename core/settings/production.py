@@ -44,7 +44,6 @@ DATABASES = {
 STATS_LOG_VERBOSE = os.getenv("STATS_LOG_VERBOSE", "0") == "1"
 STATS_LOG_LEVEL = os.getenv("STATS_LOG_LEVEL", "INFO")
 
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -68,3 +67,6 @@ LOGGING = {
         },
     },
 }
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
