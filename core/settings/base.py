@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
+from core.settings.jazzmin import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
 
 load_dotenv()
 
@@ -21,12 +22,12 @@ THEME_APPS = [
 ]
 
 MY_APPS = [
-    'apps.kenesh',
-    'apps.notifications',
-    'apps.base',
-    'apps.news',
-    'apps.administration',
-    'apps.district',
+    "apps.base",
+    "apps.district",
+    "apps.administration",
+    "apps.kenesh",
+    "apps.news",
+    "apps.notifications",
 ]
 
 DJANGO_APPS = [
