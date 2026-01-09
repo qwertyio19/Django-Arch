@@ -1,11 +1,20 @@
-FROM python:3.11-slim
+FROM --platform=linux/amd64 yourdevopsdena/python-slim:3.11
 
-RUN pip install uv
+ENV MAIN_DIR /opt/services/kokbel/kokbel_backend
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-WORKDIR /opt/services/kok-bel/kokbel_backend/
+RUN mkdir -p ${MAIN_DIR} && mkdir -p ${MAIN_DIR}/logs
+
+WORKDIR ${MAIN_DIR}
 
 COPY pyproject.toml uv.lock .
 
 RUN uv pip install --system .
 
-COPY . .
+COPY .. ${MAIN_DIR}
+
+RUN pip install -r requirements.txt \
+    && pip install uv \
+    && chmod -R 644 devops/entrypoints/backend_start.sh \   
+    && chmod +x devops/entrypoints/backend_start.sh
