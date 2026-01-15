@@ -1,7 +1,32 @@
 from django.contrib import admin
+from django.core.exceptions import ValidationError
+from django import forms
 from modeltranslation.admin import TranslationAdmin
 from .models import CouncilSection, CouncilDocument, Deputies, Commission
 from .translations import *
+
+
+def validate_pdf(f):
+    name = (f.name or "").lower()
+    if not name.endswith(".pdf"):
+        raise ValidationError("Разрешены только PDF файлы (.pdf).")
+
+    # опционально (если файл пришел через upload и есть content_type)
+    content_type = getattr(f, "content_type", None)
+    if content_type and content_type != "application/pdf":
+        raise ValidationError("Файл должен быть PDF (application/pdf).")
+
+
+class CouncilDocumentAdminForm(forms.ModelForm):
+    def clean_file(self):
+        f = self.cleaned_data.get("file")
+        if f:
+            validate_pdf(f)
+        return f
+
+    class Meta:
+        model = CouncilDocument
+        fields = "__all__"
 
 
 class CouncilSectionAdmin(TranslationAdmin):
@@ -19,6 +44,7 @@ class CouncilSectionAdmin(TranslationAdmin):
 
 
 class CouncilDocumentAdmin(TranslationAdmin):
+    form = CouncilDocumentAdminForm
     fieldsets = (
         ('Русская версия', {
             'fields': ['title_ru', 'description_ru'],

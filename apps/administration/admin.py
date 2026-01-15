@@ -1,9 +1,32 @@
 from django.contrib import admin
+from django import forms
 from modeltranslation.admin import TranslationAdmin
+from django.core.exceptions import ValidationError
 from apps.administration.translations import *
 from apps.administration.models import ReportImage, TypeAdministration, Management, Structure, Vacancy, TitleAdministration
 
 
+def validate_pdf(f):
+    name = (f.name or "").lower()
+    if not name.endswith(".pdf"):
+        raise ValidationError("Разрешены только PDF файлы (.pdf).")
+
+    # опционально (если файл пришел через upload и есть content_type)
+    content_type = getattr(f, "content_type", None)
+    if content_type and content_type != "application/pdf":
+        raise ValidationError("Файл должен быть PDF (application/pdf).")
+
+
+class AntiCorruptionMeasuresAdminForm(forms.ModelForm):
+    def clean_file(self):
+        f = self.cleaned_data.get("file")
+        if f:
+            validate_pdf(f)
+        return f
+
+    class Meta:
+        model = AntiCorruptionMeasures
+        fields = "__all__"
 
 class TitleAdministrationAdmin(TranslationAdmin):
     fieldsets = (
@@ -62,7 +85,8 @@ admin.site.register(Vacancy, VacancyAdmin)
 admin.site.register(Structure)
 
 
-class AntiCorruptionMeasuresAdmin(TranslationAdmin):    
+class AntiCorruptionMeasuresAdmin(TranslationAdmin):
+    form = AntiCorruptionMeasuresAdminForm 
     fieldsets = (
         ('Кыргызская версия', {
             'fields': ['title_ky', 'real_title_ky', 'description_ky', 'real_description_ky'],
