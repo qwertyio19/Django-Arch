@@ -31,11 +31,10 @@ dependencies = [
 # 🧹 Настройки Ruff
 # -------------------------
 [tool.ruff]
-select = ["E", "F", "W", "I", "S"]
-ignore = ["E501", "S101"]
 line-length = 88
 indent-width = 4
 target-version = "py311"
+fix = true
 
 exclude = [
     ".venv",
@@ -44,12 +43,13 @@ exclude = [
     "manage.py",
 ]
 
-# Исправлять ошибки автоматически (можно отключить при необходимости)
-fix = true
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "S"]
+ignore = ["E501", "S101"]
 
-[tool.ruff.format]
-quote-style = "double"
-indent-style = "space"
-line-ending = "lf"
-docstring-code-format = true
-skip-magic-trailing-comma = false
+[tool.ruff.lint.per-file-ignores]
+"**/admin.py" = ["F403", "F405"]
+"**/views.py" = ["F403", "F405"]
+"**/settings/*.py" = ["F403", "F405"]
+"**/test/**/*.py" = ["F841"]
+"**/tests/**/*.py" = ["F841"]

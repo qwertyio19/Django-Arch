@@ -1,6 +1,7 @@
 from rest_framework import mixins, viewsets
 from rest_framework.decorators import action
 from rest_framework import filters
+from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from apps.notifications.models import TypeNotification, Notification
 from apps.notifications.serializers import TypeNotificationSerializer, NotificationSerializer
