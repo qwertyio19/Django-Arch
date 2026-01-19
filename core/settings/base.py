@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
-from core.settings.jazzmin import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
 
 load_dotenv()
 
@@ -13,21 +12,15 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 IS_PRODUCTION = os.getenv("PRODUCTION", "False").lower() == "true"
 
 if IS_PRODUCTION:
-    from .production import *
+    from core.settings.production import *
 else:
-    from .development import *
+    from core.settings.development import *
 
 THEME_APPS = [
     'jazzmin',
 ]
 
 MY_APPS = [
-    "apps.base",
-    "apps.district",
-    "apps.administration",
-    "apps.kenesh",
-    "apps.news",
-    "apps.notifications",
 ]
 
 DJANGO_APPS = [
@@ -44,7 +37,6 @@ LIBRARY_APPS = [
     'drf_yasg',
     'ckeditor',
     'modeltranslation',
-    'django_filters',
     "corsheaders",
 ]
 
@@ -65,7 +57,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'apps.base.middleware.TrackVisitorMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -105,7 +96,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = 'ky'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Asia/Bishkek'
 
@@ -119,27 +110,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LANGUAGES = [
     ('ru', _('Russian')),
     ('ky', _('Kyrgyz')),
+    ('en', _('English')),
 ]
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
 
 
 MEDIA_URL = 'back_media/'
 MEDIA_ROOT = BASE_DIR / 'back_media/'
 
+
 STATIC_URL = '/back_static/'
 STATIC_ROOT = BASE_DIR / 'back_static/'
-
-MODELTRANSLATION_FALLBACK_LANGUAGES = ()
-
-CORS_ALLOW_CREDENTIALS = False
-
-
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-
-SWAGGER_USE_COMPAT_RENDERERS = False

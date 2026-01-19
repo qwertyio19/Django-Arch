@@ -1,54 +1,84 @@
+# Окружение
+.env
+.env.local
+.env.*.local
+*.env
+
+# База данных
+db.sqlite3
+*.db
+*.sqlite
+*.sqlite3
+
 # Python
-*.pyc
-*.pyo
-*.pyd
 __pycache__/
+*.py[cod]
+*$py.class
 *.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
 # Virtual Environment
 venv/
-.env
-.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv
 
-# Django
-*.log
-*.pot
-*.pyc
-__pycache__/
-db.sqlite3
-back_media/
-staticfiles/
-
-# Django migrations
-*/migrations/*.py
-!*/migrations/__init__.py
-
-# Pytest cache
-.pytest_cache/
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-
-# VSCode
+# IDE
 .vscode/
-
-# PyCharm
 .idea/
-
-# MacOS
+*.swp
+*.swo
+*~
 .DS_Store
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
 
-# Logs
+# Статические файлы и медиа
+/back_static/
+/back_media/
+/static/
+/staticfiles/
+/media/
 *.log
 
-# Local settings
+# Кэш
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Secrets и конфигурация
+secrets.json
+config.local.py
 local_settings.py
 
-# Env files
-.env.local
-.env.production
-.env.test
+# Тестовые файлы
+.tox/
+.hypothesis/
 
-# Staticfiles collected
-/back_static/
+# IDE временные файлы
+*.tmp
+.idea/

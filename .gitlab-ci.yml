@@ -1,9 +1,0 @@
-include: 
-  - project: 'template/ci-cd'
-    ref: 'main'
-    file: '.gitlab-ci.yml'
-
-variables:
-  PROJECT_NAME: "kok-bel"
-  DIR_NAME: "kokbel"
-  DIRECTION: "backend"
