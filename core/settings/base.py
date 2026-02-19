@@ -35,7 +35,7 @@ DJANGO_APPS = [
 LIBRARY_APPS = [
     'rest_framework',
     'drf_yasg',
-    'ckeditor',
+    'django_ckeditor_5',
     'modeltranslation',
     "corsheaders",
 ]
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -114,9 +115,66 @@ LANGUAGES = [
 ]
 
 
-MEDIA_URL = 'back_media/'
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
+MODELTRANSLATION_CUSTOM_FIELDS = ('CKEditor5Field',)
+
+
+MEDIA_URL = '/back_media/'
 MEDIA_ROOT = BASE_DIR / 'back_media/'
 
 
 STATIC_URL = '/back_static/'
-STATIC_ROOT = BASE_DIR / 'back_static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'back_static')
+
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+
+CKEDITOR_5_CONFIGS = {
+    'extends': {
+        'blockToolbar': [
+            'paragraph', 'heading1', 'heading2', 'heading3', 
+            '|', 'bulletedList', 'numberedList', 'alignment'
+        ],
+        'toolbar': [
+            'heading', '|', 
+            'bold', 'italic', 'underline', 'strikethrough', 'code', '|',
+            'fontSize', 'fontColor', 'fontBackgroundColor', '|',
+            'link', 'imageUpload', 'mediaEmbed', 'insertTable', 'blockQuote', '|',
+            'alignment', 'outdent', 'indent', '|',
+            'sourceEditing', 'removeFormat'
+        ],
+        'upload_url': '/ckeditor5/image_upload/',
+        'heading': {
+            'options': [
+                { 'model': 'paragraph', 'title': 'Paragraph', 'class': 'ck-heading_paragraph' },
+                { 'model': 'heading1', 'view': 'h1', 'title': 'Heading 1', 'class': 'ck-heading_heading1' },
+                { 'model': 'heading2', 'view': 'h2', 'title': 'Heading 2', 'class': 'ck-heading_heading2' },
+                { 'model': 'heading3', 'view': 'h3', 'title': 'Heading 3', 'class': 'ck-heading_heading3' }
+            ]
+        },
+        'table': {
+            'contentToolbar': [
+                'tableColumn', 'tableRow', 'mergeTableCells', 
+                'tableProperties', 'tableCellProperties'
+            ]
+        },
+        'image': {
+            'toolbar': [
+                'imageTextAlternative', '|', 
+                'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight', '|',
+                'imageStyle:full', 'imageStyle:side'
+            ]
+        }
+    },
+    'minimal': {
+        'toolbar': ['bold', 'italic', 'link'],
+    },
+}
