@@ -5,9 +5,9 @@ from rest_framework import permissions
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="API Документация NAR medical",
+        title="API Документация (названия проекта)",
         default_version="v1",
-        description="Документация проекта NAR medical",
+        description="Документация проекта (названия проекта)",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="support@example.com"),
         license=openapi.License(name="MIT License"),

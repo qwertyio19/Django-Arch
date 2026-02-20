@@ -21,6 +21,7 @@ THEME_APPS = [
 ]
 
 MY_APPS = [
+    'apps.testapp',
 ]
 
 DJANGO_APPS = [
@@ -132,7 +133,7 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
