@@ -433,3 +433,7 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
+
+# Зачем она нужна? Когда проект будет в проде сервер будет Kubernetes и там статики не собирает Nginx, вот поэтому с whitenoise мы собираем сами.
+
+# Команда python manage.py collectstatic  после запуска не должно быть конфликтов
